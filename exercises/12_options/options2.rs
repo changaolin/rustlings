@@ -25,9 +25,14 @@ mod tests {
         }
 
         let mut cursor = range;
+
         while let Some(integer) = optional_integers.pop() {
-            assert_eq!(integer, Some(cursor));
-            cursor -= 1;
+            if cursor == 0 {
+                assert_eq!(integer, None);
+            } else {
+                assert_eq!(integer, Some(cursor));
+                cursor -= 1;
+            }
         }
 
         assert_eq!(cursor, 0);
